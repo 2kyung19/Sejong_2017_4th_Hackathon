@@ -537,6 +537,6 @@ def id(usernumber,num):
                             baselist.append(trackbase[k])
         
 
-        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f&name=%s&track=%s&use1=%s&use2=%s&base1=%s&base2=%s"%(score1,score2,username,usertrack[0],sjtrackuse,uselist,sjtrackbase,baselist)
+        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f&name=%s&track=%s&use1=%s&use2=%s&base1=%s&base2=%s"%(score1,score2,username,usertrack[0],useruse,uselist,userbase,baselist)
         
         return printstr
