@@ -35,10 +35,8 @@ def message(request):
 
     elif return_str=="전체 트랙 보기":
         return JsonResponse({
-            "keyboard":{
-                "type" : "buttons",
-                "buttons" : ["멀티미디어","사물인터넷","시스템응용"]
-            }
+            "type" : "buttons",
+            "buttons" : ["멀티미디어","사물인터넷","시스템 응용"]
         })
 
 
