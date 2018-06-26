@@ -421,13 +421,13 @@ def id(usernumber,num):
                     trackbase=tbase[i].split(",")
                     userbase=sjtrackbase[index1].split(",")
 
-                    for k in range(0,len(trackbase)):
+                    for k in range(0,len(trackbase)): #사용자가 수강한 기초교과를 뺀 나머지 교과목을 반환해주기위해
                         cnt=0
-                        for l in range(0,len(userbase)):
-                            if userbase[l]==trackbase[k]:
+                        for l in range(0,len(userbase)): 
+                            if userbase[l]==trackbase[k]: 
                                 cnt+=1
-                        if cnt==0:
-                            printstr=printstr+trackbase[k]+"\n"
+                        if cnt==0:                  #만약 사용자가 수강하지않았다면 
+                            printstr=printstr+trackbase[k]+"\n" #스트링에 추가함
 
             printstr+="\n===============\n"
 
