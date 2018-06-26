@@ -511,7 +511,7 @@ def id(usernumber,num):
 
         uselist=[]
         for i in range(0,len(tname)):
-                if tname[i]==usertrack[j]:
+                if tname[i]==usertrack[0]:
                     trackuse=tuse[i].split(",")
                     useruse=sjtrackuse[index1].split(",")
 
@@ -524,7 +524,7 @@ def id(usernumber,num):
                             uselist.append(trackuse[k])
         baselist=[]                    
         for i in range(0,len(tname)):
-                if tname[i]==usertrack[j]:
+                if tname[i]==usertrack[0]:
                     trackbase=tbase[i].split(",")
                     userbase=sjtrackbase[index1].split(",")
 
