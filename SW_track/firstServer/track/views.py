@@ -40,6 +40,7 @@ def message(request):
         if idCheck(int(return_str))==True:
             global userid
             userid=int(return_str)
+
             return JsonResponse({
                 "message":{
                     "text":id(userid,1)+"\n조회 하실 교과목을 선택하세요."
@@ -245,15 +246,14 @@ def message(request):
 ####################################################################################################
 
 def all_track(track):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
-    response = urllib.request.urlopen(req)
-    text = response.read().decode("utf8")
+    treq = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+    tresponse = urllib.request.urlopen(treq)
+    ttext = tresponse.read().decode("utf8")
+    tsoup = BeautifulSoup(ttext, 'html.parser')
 
-    soup = BeautifulSoup(text, 'html.parser')
-
-    tname = soup.find_all('td',{'class':'tname'})
-    tbase = soup.find_all('td',{'class':'tbase'})
-    tuse = soup.find_all('td',{'class':'tuse'})
+    tname = tsoup.find_all('td',{'class':'tname'})
+    tbase = tsoup.find_all('td',{'class':'tbase'})
+    tuse = tsoup.find_all('td',{'class':'tuse'})
 
     all = [0,0,0,0,0,0,0,0,0,0]
 
@@ -269,10 +269,8 @@ def all_track(track):
         i = tuse.index(n)
         tuse[i]= n.get_text()
 
-
     for i in range(0,len(tname)):
         all[i] = str(i+1)+ '.' + str(tname[i]) + '\n\n*기초교과*\n' + str(tbase[i]) + '\n\n*응용교과*\n' + str(tuse[i])
-
         
     list=all[track].split(",")
 
@@ -304,6 +302,44 @@ def idCheck(usernumber):
     return cnt
 
 def id(usernumber,num):
+    
+    def tracklist(menu):
+        treq = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+        tresponse = urllib.request.urlopen(treq)
+        ttext = tresponse.read().decode("utf8")
+        tsoup = BeautifulSoup(ttext, 'html.parser')
+
+        tname = tsoup.find_all('td',{'class':'tname'})
+        tbase = tsoup.find_all('td',{'class':'tbase'})
+        tuse = tsoup.find_all('td',{'class':'tuse'})
+
+        for n in tname:
+            i = tname.index(n)
+            tname[i]= n.get_text()
+        for n in tbase:
+            i = tbase.index(n)
+            tbase[i]= n.get_text()
+        for n in tuse:
+            i = tuse.index(n)
+            tuse[i]= n.get_text()
+
+        if menu==1:
+            for n in len(0,tname):
+                if tname[n]==usertrack[j]:
+                    index2=n
+                    break
+
+            baselist=tbase[index2].split(",")
+            usertrackbase=sjtrackbase[index1].split(",")
+
+            liststr=""
+            for n in range(0,len(baselist)):
+                for m in range(0,len(usertrackbase)):
+                    if baselist[n]==usertrackbase[m]:
+                        liststr=liststr+baselist[n]+"\n"
+            return liststr
+
+            
     req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -358,3 +394,8 @@ def id(usernumber,num):
             printstr=printstr+usertrack[i]+'\n'
         printstr+="트랙 과정 중입니다.\n"
         return printstr
+
+    elif num==2:
+        for j in range(0,len(usertrack)):
+            printstr=username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"+tracklist(1)
+            
