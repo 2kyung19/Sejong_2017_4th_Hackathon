@@ -23,6 +23,7 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
 
+    #################################################################트랙조회
     if return_str=='트랙 조회':
         return JsonResponse({
             "message": {
@@ -34,11 +35,33 @@ def message(request):
         })
 
     elif return_str.find("1")!=-1:
+
+        userid=int(return_str)
         return JsonResponse({
             "message":{
-                "text":id(int(return_str))
+                "text":id(int(return_str))+"\n조회 하실 교과목을 선택하세요."
+            }
+            "keyboard":{
+                "type":"buttons",
+                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
             }
         })
+
+    elif return_str=="트랙 기초교과":
+        return JsonResponse({
+            "message":{
+                "text":tbase(userid)
+            }
+        })
+
+    elif return_str=="트랙 응용교과":
+        return JsonResponse({
+            "message":{
+                "text":tuse(userid)
+            }
+    })    
+    
+    #################################################################전체트랙보기
 
     elif return_str=="전체 트랙 보기":
         return JsonResponse({
@@ -47,7 +70,7 @@ def message(request):
             },
             "keyboard":{
                 "type" : "buttons",
-                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방"]
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
 
@@ -118,6 +141,16 @@ def message(request):
                 "text": all_track(9)
             }
         })
+    
+    else: #처음으로
+        return JsonResponse({
+            "keyboard":{
+                "type":"buttons",
+                "buttons" : ["트랙 조회","전체 트랙 보기"]
+            }
+        })
+
+####################################################################################################
 
 def all_track(track):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
@@ -157,7 +190,6 @@ def all_track(track):
 
     return abc
 
-    
 
 def id(usernumber):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
