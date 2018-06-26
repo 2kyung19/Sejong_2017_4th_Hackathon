@@ -14,7 +14,7 @@ def keyboard(request):
     return JsonResponse(
         {
             "type" : "buttons",
-            "buttons" : ["트랙 조회","전체 트랙 보기"]
+            "buttons" : ["자신의 트랙 조회","전체 트랙 보기","소프트웨어융합대학 사이트"]
         }   
     )
 
@@ -25,7 +25,7 @@ def message(request):
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
 
     #################################################################트랙조회
-    if return_str=='트랙 조회':
+    if return_str=='자신의 트랙 조회':
         return JsonResponse({
             "message": {
                 "text": '학번을 입력해주세요.\nex)17010491'
@@ -198,9 +198,20 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons" : ["트랙 조회","전체 트랙 보기"]
+                "buttons" : ["자신의 트랙 조회","전체 트랙 보기","소프트웨어융합대학 사이트"]
             }
         })
+
+    elif return_str=="소프트웨어융합대학 사이트":
+         return JsonResponse({
+                "message":{
+                    "text":"소프트웨어 융합대학 홈페이지",
+                    "message_button": {
+                        "label": "홈페이지 바로가기",
+                        "url": "http://www.sejong.ac.kr/college/software.html?menu_id=1.12"
+                    }
+                }
+            })
 
     else:
         return JsonResponse({
@@ -209,7 +220,7 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons" : ["트랙 조회","전체 트랙 보기"]
+                "buttons" : ["자신의 트랙 조회","전체 트랙 보기","소프트웨어융합대학 사이트"]
             }
         })
 
@@ -323,9 +334,9 @@ def id(usernumber,num):
         printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
         list=sjtrackbase[index1].split(",")
         for i in range(0,len(list)):
-            printstr=printstr+list[i]+"\n\n"
+            printstr=printstr+list[i]+"\n"
 
-        printstr=printstr+"*수강해야하는 교과목*\n"
+        printstr=printstr+"\n*수강해야하는 교과목*\n"
         list=sjtrackbase[index1].split(",")
         base=tbase[index2].split(",")
         for i in range(0,len(base)):
@@ -344,9 +355,9 @@ def id(usernumber,num):
         printstr=username+" 님의 "+usertrack+" 트랙 응용과정 현황입니다.\n\n"+"*수강한 교과목*\n"
         list=sjtrackuse[index1].split(",")
         for i in range(0,len(list)):
-            printstr=printstr+list[i]+"\n\n"
+            printstr=printstr+list[i]+"\n"
 
-        printstr=printstr+"*수강해야하는 교과목*\n"
+        printstr=printstr+"\n*수강해야하는 교과목*\n"
         list=sjtrackuse[index1].split(",")
         use=tuse[index2].split(",")
         for i in range(0,len(use)):
