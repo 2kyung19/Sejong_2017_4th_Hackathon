@@ -276,15 +276,15 @@ def trackread():
 
     for n in tname:
         i = tname.index(n)
-        tname[i]= n.get_text()
+        tname[i]= n.get_text().replace(" ","")
         
     for n in tbase:
         i = tbase.index(n)
-        tbase[i]= n.get_text()
+        tbase[i]= n.get_text().replace(" ","")
 
     for n in tuse:
         i = tuse.index(n)
-        tuse[i]= n.get_text()
+        tuse[i]= n.get_text().replace(" ","")
 
 def all_track(track):
     global tnum
@@ -316,7 +316,7 @@ def idCheck(usernumber):
     sjnumber=soup.find_all("td",{'class',"number"})
     for n in sjnumber:
         i = sjnumber.index(n)
-        sjnumber[i]= n.get_text()
+        sjnumber[i]= n.get_text().replace(" ","")
         sjnumber[i]=int(sjnumber[i])
     
     cnt=False
@@ -347,24 +347,24 @@ def id(usernumber,num):
     ##쓰레기값 제거
     for n in sjname:
         i = sjname.index(n)
-        sjname[i]= n.get_text()
+        sjname[i]= n.get_text().replace(" ","")
 
     for n in sjnumber:
         i = sjnumber.index(n)
-        sjnumber[i]= n.get_text()
+        sjnumber[i]= n.get_text().replace(" ","")
         sjnumber[i]=int(sjnumber[i])
 
     for n in sjtrack:
         i = sjtrack.index(n)
-        sjtrack[i]= n.get_text()
+        sjtrack[i]= n.get_text().replace(" ","")
 
     for n in sjtrackbase:
         i = sjtrackbase.index(n)
-        sjtrackbase[i]= n.get_text()
+        sjtrackbase[i]= n.get_text().replace(" ","")
 
     for n in sjtrackuse:
         i = sjtrackuse.index(n)
-        sjtrackuse[i]= n.get_text()
+        sjtrackuse[i]= n.get_text().replace(" ","")
 
     trackread() #총 트랙 정리
 
@@ -384,9 +384,9 @@ def id(usernumber,num):
         usertrack.append(sjtrack[index1])
 
     if num==1:
-        printstr=username+" 님은 \n"
+        printstr=username+" 님은 "
         for i in range(0,len(usertrack)):
-            printstr=printstr+usertrack[i]+'\n'
+            printstr=printstr+usertrack[i]+' '
         printstr+="트랙 과정 중입니다.\n"
         return printstr
 
