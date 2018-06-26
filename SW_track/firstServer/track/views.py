@@ -144,6 +144,9 @@ def message(request):
     
     elif return_str=="처음으로":
         return JsonResponse({
+            "message":{
+                "text":"버튼을 선택하세요."
+            },
             "keyboard":{
                 "type":"buttons",
                 "buttons" : ["트랙 조회","전체 트랙 보기"]
