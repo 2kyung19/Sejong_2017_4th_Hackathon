@@ -40,7 +40,7 @@ def message(request):
         return JsonResponse({
             "message":{
                 "text":id(int(return_str))+"\n조회 하실 교과목을 선택하세요."
-            }
+            },
             "keyboard":{
                 "type":"buttons",
                 "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
