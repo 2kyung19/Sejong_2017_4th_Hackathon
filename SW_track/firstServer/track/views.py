@@ -339,3 +339,24 @@ def id(usernumber,num):
             
             cnt=0
         return printstr
+
+    elif num==3:
+        printstr=username+" 님의 "+usertrack+" 트랙 응용과정 현황입니다.\n\n"+"*수강한 교과목*\n"
+        list=sjtrackuse[index1].split(",")
+        for i in range(0,len(list)):
+            printstr=printstr+list[i]+"\n\n"
+
+        printstr=printstr+"*수강해야하는 교과목*\n"
+        list=sjtrackuse[index1].split(",")
+        use=tuse[index2].split(",")
+        for i in range(0,len(use)):
+            cnt=0
+            for j in range(0,len(list)):
+                if use[i]==list[j]:
+                    cnt+=1
+            
+            if cnt==0:
+                printstr=printstr+use[i]+"\n"
+            
+            cnt=0
+        return printstr
