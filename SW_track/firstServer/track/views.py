@@ -245,7 +245,7 @@ def message(request):
 ####################################################################################################
 
 def all_track(track):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     response = urllib.request.urlopen(req)
     text = response.read().decode("utf8")
 
@@ -282,8 +282,9 @@ def all_track(track):
 
     return abc
 
+#해당 id가 데이터에 있느냐 없느냐
 def idCheck(usernumber):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
@@ -303,7 +304,7 @@ def idCheck(usernumber):
     return cnt
 
 def id(usernumber,num):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
@@ -315,32 +316,16 @@ def id(usernumber,num):
     sjtrackbase=soup.find_all("td",{'class',"trackbase"})
     sjtrackuse=soup.find_all("td",{'class',"trackuse"})
 
-    tname = soup.find_all('td',{'class':'tname'})
-    tbase = soup.find_all('td',{'class':'tbase'})
-    tuse = soup.find_all('td',{'class':'tuse'})
-
     ##쓰레기값 제거
-    for n in tname:
-        i = tname.index(n)
-        tname[i]= n.get_text()
-        
-    for n in tbase:
-        i = tbase.index(n)
-        tbase[i]= n.get_text()
-
-    for n in tuse:
-        i = tuse.index(n)
-        tuse[i]= n.get_text()
-    
     for n in sjname:
         i = sjname.index(n)
         sjname[i]= n.get_text()
-
+        
     for n in sjnumber:
         i = sjnumber.index(n)
         sjnumber[i]= n.get_text()
         sjnumber[i]=int(sjnumber[i])
-        
+
     for n in sjtrack:
         i = sjtrack.index(n)
         sjtrack[i]= n.get_text()
@@ -353,64 +338,23 @@ def id(usernumber,num):
         i = sjtrackuse.index(n)
         sjtrackuse[i]= n.get_text()
 
-    #입력한 학번에 대한 정보를 알기 위해
+    #입력한 학번에 대한 정보를 알기 위해 인덱스 추출
     for i in range(0,len(sjnumber)):
         if sjnumber[i]==usernumber:
             index1=i #index1=> 이름/학번/선택한 트랙
             break
 
     username=sjname[index1]
-    usertrack=sjtrack[index1]
+    usertrack=[]
+    if sjtrack[index1].find(",")!=-1:
+        usertrack=sjtrack[index1].split(",")
 
-    #현재 수강한 교과목 비교
-    for i in range(0,len(tname)):
-        if str(usertrack)==str(tname[i]):
-            index2=i #index2=> 전체 트랙 번호와 동일
+    else:
+        usertrack.append(sjtrack[index1])
 
     if num==1:
-        printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
-        return printstr
-
-    elif num==2:
-        printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
-        list=sjtrackbase[index1].split(",")
-        for i in range(0,len(list)):
-            printstr=printstr+list[i]+"\n"
-
-        printstr=printstr+"\n*수강해야하는 교과목*\n"
-        list=sjtrackbase[index1].split(",")
-        base=tbase[index2].split(",")
-        for i in range(0,len(base)):
-            cnt=0
-            for j in range(0,len(list)):
-                if base[i]==list[j]:
-                    cnt+=1
-            
-            if cnt==0:
-                printstr=printstr+base[i]+"\n"
-            
-            cnt=0
-        return printstr
-
-    elif num==3:
-        printstr=username+" 님의 "+usertrack+" 트랙 응용과정 현황입니다.\n\n"+"*수강한 교과목*\n"
-        list=sjtrackuse[index1].split(",")
-        for i in range(0,len(list)):
-            printstr=printstr+list[i]+"\n"
-
-        printstr=printstr+"\n*수강해야하는 교과목*\n"
-        list=sjtrackuse[index1].split(",")
-        use=tuse[index2].split(",")
-        for i in range(0,len(use)):
-            cnt=0
-            for j in range(0,len(list)):
-                if use[i]==list[j]:
-                    cnt+=1
-            
-            if cnt==0:
-                printstr=printstr+use[i]+"\n"
-            
-            cnt=0
-
-        printstr = printstr+"\n=======================\n응용교과는 총 6개 이상 이수해야 합니다.\n"
+        printstr=username+" 님은 \n"
+        for i in range(0,len(usertrack)):
+            printstr=printstr+usertrack[i]+'\n'
+        printstr+="트랙 과정 중입니다.\n"
         return printstr
