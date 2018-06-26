@@ -348,7 +348,16 @@ def id(usernumber,num):
         if str(usertrack)==str(tname[i]):
             index2=i #index2=> 전체 트랙 번호와 동일
 
-    if num==1:
+    if num==0:
+        cnt=0
+        #입력한 학번에 대한 정보를 알기 위해
+        for i in range(0,len(sjnumber)):
+            if sjnumber[i]==id:
+                cnt=1 #index1=> 이름/학번/선택한 트랙
+                break
+        return cnt
+        
+    elif num==1:
         printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
         return printstr
 
