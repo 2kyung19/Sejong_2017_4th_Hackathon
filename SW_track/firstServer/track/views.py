@@ -284,7 +284,7 @@ def all_track(track):
 
 
 def id(usernumber,num):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
