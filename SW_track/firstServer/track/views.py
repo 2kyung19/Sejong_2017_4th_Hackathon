@@ -15,7 +15,7 @@ tbase=[]
 tname=[]
 
 def index(request):
-    candidates = Candidate.objects.all()
+    candidates = Track.objects.all()
     context = {'candidates' : candidates} #context에 모든 후보에 대한 정보를 저장
     return render(request, 'track/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
 
