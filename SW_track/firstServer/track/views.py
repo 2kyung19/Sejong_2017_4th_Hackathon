@@ -12,7 +12,7 @@ import requests
 def keyboard(request):
     return JsonResponse(
         {
-            "type" : "buttons"
+            "type" : "buttons",
             "buttons" : ["트랙 조회","전체 트랙 보기"]
         }   
     )
