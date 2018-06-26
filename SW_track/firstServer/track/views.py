@@ -9,6 +9,9 @@ import datetime
 import requests
 
 userid=0
+tuse=[]
+tbase=[]
+tname=[]
 
 def keyboard(request):
     return JsonResponse(
@@ -245,7 +248,11 @@ def message(request):
 
 ####################################################################################################
 
-def all_track(track):
+def all_track():
+    global tname
+    global tbase
+    global tuse
+
     treq = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     tresponse = urllib.request.urlopen(treq)
     ttext = tresponse.read().decode("utf8")
@@ -254,8 +261,6 @@ def all_track(track):
     tname = tsoup.find_all('td',{'class':'tname'})
     tbase = tsoup.find_all('td',{'class':'tbase'})
     tuse = tsoup.find_all('td',{'class':'tuse'})
-
-    all = [0,0,0,0,0,0,0,0,0,0]
 
     for n in tname:
         i = tname.index(n)
@@ -268,17 +273,6 @@ def all_track(track):
     for n in tuse:
         i = tuse.index(n)
         tuse[i]= n.get_text()
-
-    for i in range(0,len(tname)):
-        all[i] = str(i+1)+ '.' + str(tname[i]) + '\n\n*기초교과*\n' + str(tbase[i]) + '\n\n*응용교과*\n' + str(tuse[i])
-        
-    list=all[track].split(",")
-
-    abc=""
-    for i in range(0,len(list)):
-        abc=abc+list[i]+"\n"
-
-    return abc
 
 #해당 id가 데이터에 있느냐 없느냐
 def idCheck(usernumber):
@@ -302,44 +296,10 @@ def idCheck(usernumber):
     return cnt
 
 def id(usernumber,num):
-    
-    def tracklist(menu):
-        treq = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
-        tresponse = urllib.request.urlopen(treq)
-        ttext = tresponse.read().decode("utf8")
-        tsoup = BeautifulSoup(ttext, 'html.parser')
+    global tuse
+    global tbase
+    global tname
 
-        tname = tsoup.find_all('td',{'class':'tname'})
-        tbase = tsoup.find_all('td',{'class':'tbase'})
-        tuse = tsoup.find_all('td',{'class':'tuse'})
-
-        for n in tname:
-            i = tname.index(n)
-            tname[i]= n.get_text()
-        for n in tbase:
-            i = tbase.index(n)
-            tbase[i]= n.get_text()
-        for n in tuse:
-            i = tuse.index(n)
-            tuse[i]= n.get_text()
-
-        if menu==1:
-            for n in len(0,tname):
-                if tname[n]==usertrack[j]:
-                    index2=n
-                    break
-
-            baselist=tbase[index2].split(",")
-            usertrackbase=sjtrackbase[index1].split(",")
-
-            liststr=""
-            for n in range(0,len(baselist)):
-                for m in range(0,len(usertrackbase)):
-                    if baselist[n]==usertrackbase[m]:
-                        liststr=liststr+baselist[n]+"\n"
-            return liststr
-
-            
     req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -374,18 +334,19 @@ def id(usernumber,num):
         i = sjtrackuse.index(n)
         sjtrackuse[i]= n.get_text()
 
+    all_track(): #총 트랙 정리
+
     #입력한 학번에 대한 정보를 알기 위해 인덱스 추출
     for i in range(0,len(sjnumber)):
         if sjnumber[i]==usernumber:
             index1=i #index1=> 이름/학번/선택한 트랙
             break
 
-    username=sjname[index1]
-    usertrack=[]
-    if sjtrack[index1].find(",")!=-1:
+    username=sjname[index1] #이름
+    usertrack=[] #트랙이 2개 이상일수도 있으니 목록으로
+    if sjtrack[index1].find(",")!=-1: #트랙이 2개 이상이면
         usertrack=sjtrack[index1].split(",")
-
-    else:
+    else: #트랙이 1개면
         usertrack.append(sjtrack[index1])
 
     if num==1:
@@ -397,5 +358,37 @@ def id(usernumber,num):
 
     elif num==2:
         for j in range(0,len(usertrack)):
-            printstr=username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"+tracklist(1)
+            printstr=username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
+
+            for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackbase=tbase[i].split(",")
+                    userbase=sjtrackbase[i].split(",")
+
+                    for k in range(0,len(userbase)):
+                        for l in range(0,len(trackbase)):
+                            if userbase[k]==trackbase[l]:
+                                printstr=printstr+userbase[k]+"\n"
+
+        return printstr
+
             
+            
+
+    #############################################################################################
+
+        if menu==1:
+            for n in len(0,tname):
+                if tname[n]==usertrack[j]:
+                    index2=n
+                    break
+
+            baselist=tbase[index2].split(",")
+            usertrackbase=sjtrackbase[index1].split(",")
+
+            liststr=""
+            for n in range(0,len(baselist)):
+                for m in range(0,len(usertrackbase)):
+                    if baselist[n]==usertrackbase[m]:
+                        liststr=liststr+baselist[n]+"\n"
+            return liststr
