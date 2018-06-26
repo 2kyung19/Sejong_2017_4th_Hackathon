@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 import urllib.request
 import json
 import datetime
-from .models import Candidate
+from .models import Track
 import requests
 
 userid=0
