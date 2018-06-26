@@ -107,7 +107,7 @@ def message(request):
                     "text":"트랙 이수 상황에 대해 더 알아보고 싶다면?",
                     "message_button": {
                         "label": "이수 현황 조회하기",
-                        "url": "http://www.sejong.ac.kr/college/software.html?menu_id=1.12"
+                        "url": id(userid,4)
                     }
                 },
                 "keyboard":{
@@ -485,4 +485,30 @@ def id(usernumber,num):
         return printstr
 
 
-    
+    elif num==4:
+        for i in range(0,len(tname)):
+            if tname[i]==usertrack[0]:
+                trackbase=tbase[i].split(",")
+                userbase=sjtrackbase[index1].split(",")
+                cnt1=0
+                for k in range(0,len(userbase)): 
+                    for l in range(0,len(trackbase)):
+                        if userbase[k]==trackbase[l]:
+                            cnt1+=1
+
+        score1 = cnt1/len(trackbase)*100
+
+        for i in range(0,len(tname)):
+            if tname[i]==usertrack[0]:
+                trackuse=tuse[i].split(",")
+                useruse=sjtrackuse[index1].split(",")
+                cnt2=0
+                for k in range(0,len(useruse)): 
+                    for l in range(0,len(trackuse)):
+                        if useruse[k]==trackuse[l]:
+                            cnt2+=1
+        score2 = cnt2/6.0*100
+
+        printstr="http://interface518.dothome.co.kr/test.php?data1=%f&data2=%f"%(score1,score2)
+        
+        return printstr
