@@ -375,5 +375,5 @@ def id(usernumber,num):
             
             cnt=0
 
-        printstr = printstr+"응용교과는 총 6개 이상 이수해야 합니다.\n"
+        printstr = printstr+"\n=======================\n응용교과는 총 6개 이상 이수해야 합니다.\n"
         return printstr
