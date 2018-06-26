@@ -509,6 +509,34 @@ def id(usernumber,num):
                             cnt2+=1
         score2 = cnt2/6.0*100
 
-        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f&name=%s&track=%s"%(score1,score2,username,usertrack[0])
+        uselist=[]
+        for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackuse=tuse[i].split(",")
+                    useruse=sjtrackuse[index1].split(",")
+
+                    for k in range(0,len(trackuse)):
+                        cnt=0
+                        for l in range(0,len(useruse)):
+                            if useruse[l]==trackuse[k]:
+                                cnt+=1
+                        if cnt==0:
+                            uselist.append(trackuse[k])
+        baselist=[]                    
+        for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackbase=tbase[i].split(",")
+                    userbase=sjtrackbase[index1].split(",")
+
+                    for k in range(0,len(trackbase)):
+                        cnt=0
+                        for l in range(0,len(userbase)):
+                            if userbase[l]==trackbase[k]:
+                                cnt+=1
+                        if cnt==0:
+                            baselist.append(trackbase[k])
+        
+
+        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f&name=%s&track=%s&use1=%s&use2=%s&base1=%s&base2=%s"%(score1,score2,username,usertrack[0],sjtrackuse,uselist,sjtrackbase,baselist)
         
         return printstr
