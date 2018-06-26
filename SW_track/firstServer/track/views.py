@@ -248,7 +248,7 @@ def message(request):
 
 ####################################################################################################
 
-def all_track():
+def trackread():
     global tname
     global tbase
     global tuse
@@ -273,6 +273,26 @@ def all_track():
     for n in tuse:
         i = tuse.index(n)
         tuse[i]= n.get_text()
+
+def all_track(track):
+    global tnum
+    global tuse
+    global tbase
+
+    trackread()
+
+    all = [0,0,0,0,0,0,0,0,0,0]
+
+    for i in range(0,len(tname)):
+        all[i] = str(i+1)+ '.' + str(tname[i]) + '\n\n*기초교과*\n' + str(tbase[i]) + '\n\n*응용교과*\n' + str(tuse[i])
+        
+    list=all[track].split(",")
+
+    abc=""
+    for i in range(0,len(list)):
+        abc=abc+list[i]+"\n"
+
+    return abc
 
 #해당 id가 데이터에 있느냐 없느냐
 def idCheck(usernumber):
@@ -334,7 +354,7 @@ def id(usernumber,num):
         i = sjtrackuse.index(n)
         sjtrackuse[i]= n.get_text()
 
-    all_track() #총 트랙 정리
+    trackread() #총 트랙 정리
 
     #입력한 학번에 대한 정보를 알기 위해 인덱스 추출
     for i in range(0,len(sjnumber)):
