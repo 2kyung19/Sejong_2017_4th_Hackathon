@@ -7,6 +7,7 @@ import urllib.request
 import json
 import datetime
 from .models import Track
+from .models import Student
 import requests
 
 userid=0
@@ -18,6 +19,11 @@ def index(request):
     candidates = Track.objects.all()
     context = {'candidates' : candidates} #context에 모든 후보에 대한 정보를 저장
     return render(request, 'track/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
+
+def index1(request):
+    candidates = Student.objects.all()
+    context = {'candidates' : candidates} #context에 모든 후보에 대한 정보를 저장
+    return render(request, 'track/templates/student/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
 
 def keyboard(request):
     return JsonResponse(
