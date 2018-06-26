@@ -210,6 +210,10 @@ def message(request):
                         "label": "홈페이지 바로가기",
                         "url": "http://www.sejong.ac.kr/college/software.html?menu_id=1.12"
                     }
+                },
+                "keyboard":{
+                    "type":"buttons",
+                    "buttons" : ["자신의 트랙 조회","전체 트랙 보기","소프트웨어융합대학 사이트"]
                 }
             })
 
