@@ -8,6 +8,7 @@ import json
 import datetime
 import requests
 
+userid=0
 
 def keyboard(request):
     return JsonResponse(
