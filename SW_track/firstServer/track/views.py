@@ -36,7 +36,8 @@ def message(request):
         })
 
     elif return_str.find("1")!=-1:
-        global userid=int(return_str)
+        global userid
+        userid=int(return_str)
         return JsonResponse({
             "message":{
                 "text":id(int(return_str),1)+"\n조회 하실 교과목을 선택하세요."
