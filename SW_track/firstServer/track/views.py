@@ -47,7 +47,7 @@ def message(request):
     elif return_str=="멀티미디어":
         return JsonResponse({
             "message": {
-                "text": all_track(1)
+                "text": "trst"
             }
         })
     
