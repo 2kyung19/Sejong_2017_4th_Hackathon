@@ -24,26 +24,24 @@ def message(request):
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
 
     if return_str=='트랙 조회':
-        
-        count=0
-        
-        if return_str.find('1')!=-1:
-            usernumber=return_str
-            return JsonResponse({
-                "message":{
-                    'text':id(usernumber)
-                }
-            })
-
-        else:
-            return JsonResponse({
-                "message": {
-                    "text": '학번을 입력해주세요.\nex)17010491'
-                }
-            })
-
+        return JsonResponse({
+            "message": {
+                "text": '학번을 입력해주세요.\nex)17010491'
+            },
+            "keyboard":{
+                "type":"text"
+            }
+        })
     elif return_str=="전체 트랙 보기":
             track_all()
+
+    if return_str.find('1')!=-1:
+        usernumber=return_str
+        return JsonResponse({
+            "message":{
+                "text":id(usernumber)
+            }
+        })
 
 
 
