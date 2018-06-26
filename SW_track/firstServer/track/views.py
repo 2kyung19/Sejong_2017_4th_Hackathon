@@ -259,7 +259,7 @@ def trackread():
     global tbase
     global tuse
 
-    treq = urllib.request.Request("http://interface518.dothome.co.kr/track/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+    treq = urllib.request.Request("http://ec2-18-216-35-115.us-east-2.compute.amazonaws.com:8000/track", headers={'User-Agent': 'Mozilla/5.0'})
     tresponse = urllib.request.urlopen(treq)
     ttext = tresponse.read().decode("utf8")
     tsoup = BeautifulSoup(ttext, 'html.parser')
