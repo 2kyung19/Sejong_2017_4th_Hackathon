@@ -308,7 +308,7 @@ def all_track(track):
 
 #해당 id가 데이터에 있느냐 없느냐
 def idCheck(usernumber):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://ec2-18-216-35-115.us-east-2.compute.amazonaws.com:8000/student", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
@@ -332,7 +332,7 @@ def id(usernumber,num):
     global tbase
     global tname
 
-    req = urllib.request.Request("http://interface518.dothome.co.kr/track/student.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://ec2-18-216-35-115.us-east-2.compute.amazonaws.com:8000/student", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
