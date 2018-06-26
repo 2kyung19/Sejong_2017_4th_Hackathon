@@ -43,17 +43,16 @@ def message(request):
                 "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방"]
             }
         })
-
+        
     elif return_str=="멀티미디어":
         return JsonResponse({
             "message": {
-                "text": "trst"
+                "text": '학번을 입력해주세요.\nex)17010491'
             }
         })
-    
 
 
-def all_track(track):
+def track_all(track):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     response = urllib.request.urlopen(req)
     text = response.read().decode("utf8")
