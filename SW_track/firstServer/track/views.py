@@ -35,6 +35,9 @@ def message(request):
 
     elif return_str=="전체 트랙 보기":
         return JsonResponse({
+            "message": {
+                "text": '트랙을 선택하세요'
+            },
             "keyboard":{
                 "type" : "buttons",
                 "buttons" : ["트랙 조회","전체"]
