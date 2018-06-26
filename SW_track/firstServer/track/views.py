@@ -509,6 +509,6 @@ def id(usernumber,num):
                             cnt2+=1
         score2 = cnt2/6.0*100
 
-        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f"%(score1,score2)
+        printstr="http://interface518.dothome.co.kr/test.php?data1=%.2f&data2=%.2f&name=%s"%(score1,score2,username)
         
         return printstr
