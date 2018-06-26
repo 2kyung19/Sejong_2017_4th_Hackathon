@@ -44,8 +44,76 @@ def message(request):
             }
         })
 
+    elif return_str=="HCI & 비쥬얼컴퓨팅":
+        return JsonResponse({
+            "message": {
+                "text": all_track(0)
+            }
+        })
 
-def track_all(track):
+    elif return_str=="멀티미디어":
+        return JsonResponse({
+            "message": {
+                "text": all_track(1)
+            }
+        })
+    
+    elif return_str=="사물인터넷":
+        return JsonResponse({
+            "message": {
+                "text": all_track(2)
+            }
+        })
+    
+    elif return_str=="시스템응용":
+        return JsonResponse({
+            "message": {
+                "text": all_track(3)
+            }
+        })
+
+    elif return_str=="인공지능":
+        return JsonResponse({
+            "message": {
+                "text": all_track(4)
+            }
+        })
+    elif return_str=="가상현실":
+        return JsonResponse({
+            "message": {
+                "text": all_track(5)
+            }
+        })
+    
+    elif return_str=="정보보호":
+        return JsonResponse({
+            "message": {
+                "text": all_track(6)
+            }
+        })
+    
+    elif return_str=="데이터사이언스":
+        return JsonResponse({
+            "message": {
+                "text": all_track(7)
+            }
+        })
+    
+    elif return_str=="SW교육":
+        return JsonResponse({
+            "message": {
+                "text": all_track(8)
+            }
+        })
+    
+    elif return_str=="사이버국방":
+        return JsonResponse({
+            "message": {
+                "text": all_track(9)
+            }
+        })
+
+def all_track(track):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     response = urllib.request.urlopen(req)
     text = response.read().decode("utf8")
