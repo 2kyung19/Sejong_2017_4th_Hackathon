@@ -39,7 +39,7 @@ def message(request):
         global userid
         userid=int(return_str)
         
-        if id(userid,0)==1:
+        if id(userid,0)==-1:
             return JsonResponse({
                 "message":{
                     "text":id(userid,1)+"\n조회 하실 교과목을 선택하세요."
@@ -353,7 +353,7 @@ def id(usernumber,num):
         #입력한 학번에 대한 정보를 알기 위해
         for i in range(0,len(sjnumber)):
             if sjnumber[i]==id:
-                cnt=1 #index1=> 이름/학번/선택한 트랙
+                cnt=-1 #index1=> 이름/학번/선택한 트랙
                 break
         return cnt
 
