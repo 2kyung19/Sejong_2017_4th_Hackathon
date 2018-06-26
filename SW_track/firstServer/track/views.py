@@ -39,7 +39,7 @@ def message(request):
         global userid
         userid=int(return_str)
         
-        if id(userid,0)==-1:
+        if idCheck(userid)==True:
             return JsonResponse({
                 "message":{
                     "text":id(userid,1)+"\n조회 하실 교과목을 선택하세요."
@@ -50,7 +50,7 @@ def message(request):
                 }
             })
 
-        elif id(userid,0)==0:
+        elif idCheck(userid)==False:
             return JsonResponse({
                 "message":{
                     "text":"다시 시도하세요."
@@ -282,6 +282,25 @@ def all_track(track):
 
     return abc
 
+def idCheck(usernumber):
+    req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
+    con = urllib.request.urlopen(req)
+    text = con.read().decode("utf8")
+    soup = BeautifulSoup(text, 'html.parser')
+
+    sjnumber=soup.find_all("td",{'class',"number"})
+    for n in sjnumber:
+        i = sjnumber.index(n)
+        sjnumber[i]= n.get_text()
+        sjnumber[i]=int(sjnumber[i])
+    
+    cnt=False
+    #입력한 학번에 대한 정보를 알기 위해
+    for i in range(0,len(sjnumber)):
+        if sjnumber[i]==id:
+            cnt=True
+            break
+    return cnt
 
 def id(usernumber,num):
     req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
@@ -348,16 +367,7 @@ def id(usernumber,num):
         if str(usertrack)==str(tname[i]):
             index2=i #index2=> 전체 트랙 번호와 동일
 
-    if num==0:
-        cnt=0
-        #입력한 학번에 대한 정보를 알기 위해
-        for i in range(0,len(sjnumber)):
-            if sjnumber[i]==id:
-                cnt=-1 #index1=> 이름/학번/선택한 트랙
-                break
-        return cnt
-
-    elif num==1:
+    if num==1:
         printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
         return printstr
 
