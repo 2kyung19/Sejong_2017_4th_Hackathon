@@ -52,6 +52,7 @@ def message(request):
 
     elif return_str.find("1")!=-1:
         
+        ########데이터에 있는 학번########
         if idCheck(int(return_str))==True:
             global userid
             userid=int(return_str)
@@ -66,6 +67,7 @@ def message(request):
                 }
             })
 
+        #######데이터에 없는 학번#########
         elif idCheck(int(return_str))==False:
             return JsonResponse({
                 "message":{
@@ -100,7 +102,6 @@ def message(request):
     })    
     
     #################################################################전체트랙보기
-
     elif return_str=="전체 트랙 보기":
         return JsonResponse({
             "message": {
@@ -220,7 +221,7 @@ def message(request):
             }
         })
     
-
+    #############################################################기타 버튼
     elif return_str=="처음으로":
         return JsonResponse({
             "message":{
@@ -247,6 +248,7 @@ def message(request):
                 }
             })
 
+    #######################################################오류
     else:
         return JsonResponse({
             "message":{
@@ -258,8 +260,9 @@ def message(request):
             }
         })
 
-####################################################################################################
+################################################함수####################################################
 
+##전체 트랙을 읽어서 목록 값에 저장##
 def trackread():
     global tname
     global tbase
@@ -286,6 +289,7 @@ def trackread():
         i = tuse.index(n)
         tuse[i]= n.get_text().replace(" ","")
 
+##전체 트랙값 스트링 반환 함수##
 def all_track(track):
     global tnum
     global tuse
@@ -306,7 +310,7 @@ def all_track(track):
 
     return abc
 
-#해당 id가 데이터에 있느냐 없느냐
+#해당 id가 데이터에 있느냐 없느냐 검사 함수
 def idCheck(usernumber):
     req = urllib.request.Request("http://ec2-18-216-35-115.us-east-2.compute.amazonaws.com:8000/student", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
@@ -320,7 +324,6 @@ def idCheck(usernumber):
         sjnumber[i]=int(sjnumber[i])
     
     cnt=False
-    #입력한 학번에 대한 정보를 알기 위해
     for i in range(0,len(sjnumber)):
         if sjnumber[i]==usernumber:
             cnt=True
