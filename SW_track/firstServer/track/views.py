@@ -265,6 +265,22 @@ def id(usernumber,num):
     sjtrack=soup.find_all("td",{'class',"track"})
     sjtrackbase=soup.find_all("td",{'class',"trackbase"})
     sjtrackuse=soup.find_all("td",{'class',"trackuse"})
+
+    tname = soup.find_all('td',{'class':'tname'})
+    tbase = soup.find_all('td',{'class':'tbase'})
+    tuse = soup.find_all('td',{'class':'tuse'})
+
+    for n in tname:
+        i = tname.index(n)
+        tname[i]= n.get_text()
+        
+    for n in tbase:
+        i = tbase.index(n)
+        tbase[i]= n.get_text()
+
+    for n in tuse:
+        i = tuse.index(n)
+        tuse[i]= n.get_text()
     
     for n in sjname:
         i = sjname.index(n)
@@ -295,6 +311,10 @@ def id(usernumber,num):
     username=sjname[index1]
     usertrack=sjtrack[index1]
 
+    for i in range(0,len(tname)):
+        if str(usertrack)==str(tname[i]):
+            index2=i
+
     if num==1:
         printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
         return printstr
@@ -303,6 +323,19 @@ def id(usernumber,num):
         printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
         list=sjtrackbase[index1].split(",")
         for i in range(0,len(list)):
-            printstr=printstr+list[i]
+            printstr=printstr+list[i]+"\n\n"
 
+        printstr=printstr+"*수강해야하는 교과목*\n"
+        list=sjtrackbase[index1].split(",")
+        base=tbase[index2].split(",")
+        for i in range(0,len(base)):
+            cnt=0
+            for j in range(0,len(list)):
+                if base[i]==list[j]:
+                    cnt+=1
+            
+            if cnt==0:
+                printstr=printstr+base[i]+"\n"
+            
+            cnt=0
         return printstr
