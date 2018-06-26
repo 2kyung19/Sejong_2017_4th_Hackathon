@@ -392,3 +392,37 @@ def id(usernumber,num):
             printstr+="\n===============\n"
 
         return printstr
+
+    elif num==3:
+        printstr=""
+        for j in range(0,len(usertrack)):
+            printstr=printstr+username+" 님의 "+usertrack[j]+" 트랙 응용과정 현황입니다.\n\n"+"*수강한 교과목*\n"
+
+            for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackuse=tuse[i].split(",")
+                    useruse=sjtrackuse[index1].split(",")
+
+                    for k in range(0,len(useruse)):
+                        for l in range(0,len(trackuse)):
+                            if useruse[k]==trackuse[l]:
+                                printstr=printstr+useruse[k]+"\n"
+                                
+            printstr=printstr+"\n*수강해야하는 교과목*\n"
+
+            for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackuse=tuse[i].split(",")
+                    useruse=sjtrackuse[index1].split(",")
+
+                    for k in range(0,len(trackuse)):
+                        cnt=0
+                        for l in range(0,len(useruse)):
+                            if useruse[l]==trackuse[k]:
+                                cnt+=1
+                        if cnt==0:
+                            printstr=printstr+trackuse[k]+"\n"
+
+            printstr+="\n===============\n"
+
+        return printstr
