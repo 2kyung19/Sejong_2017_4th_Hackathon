@@ -63,7 +63,7 @@ def message(request):
                 },
                 "keyboard":{
                     "type":"buttons",
-                    "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
+                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
                 }
             })
 
@@ -86,7 +86,7 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
+                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
             }
         })
 
@@ -97,9 +97,36 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
+                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
             }
-    })    
+    })
+
+    elif return_str=="다른 트랙과 비교":
+        return JsonResponse({
+            "message":{
+                "text":id(userid,4)
+            },
+            "keyboard":{
+                "type":"buttons",
+                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+            }
+        })
+
+    elif return_str=="자세히보기":
+        return JsonResponse({
+            "message":{
+                    "text":"트랙 이수 상황에 대해 더 알아보고 싶다면?",
+                    "message_button": {
+                        "label": "이수 현황 조회하기",
+                        "url": "http://www.sejong.ac.kr/college/software.html?menu_id=1.12"
+                    }
+                },
+                "keyboard":{
+                    "type":"buttons",
+                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+                }
+
+        })
     
     #################################################################전체트랙보기
     elif return_str=="전체 트랙 보기":
@@ -467,3 +494,6 @@ def id(usernumber,num):
             printstr+="\n===============\n"
 
         return printstr
+
+
+    
