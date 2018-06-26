@@ -39,7 +39,18 @@ def message(request):
         userid=int(return_str)
         return JsonResponse({
             "message":{
-                "text":id(int(return_str))+"\n조회 하실 교과목을 선택하세요."
+                "text":id(int(return_str),1)+"\n조회 하실 교과목을 선택하세요."
+            },
+            "keyboard":{
+                "type":"buttons",
+                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
+            }
+        })             
+
+    elif return_str=="트랙 기초교과":
+        return JsonResponse({
+            "message":{
+                "text":id(userid,2)
             },
             "keyboard":{
                 "type":"buttons",
@@ -47,17 +58,14 @@ def message(request):
             }
         })
 
-    elif return_str=="트랙 기초교과":
-        return JsonResponse({
-            "message":{
-                "text":tbase(userid)
-            }
-        })
-
     elif return_str=="트랙 응용교과":
         return JsonResponse({
             "message":{
-                "text":tuse(userid)
+                "text":id(userid,3)
+            },
+            "keyboard":{
+                "type":"buttons",
+                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
             }
     })    
     
@@ -78,6 +86,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(0)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })    
 
@@ -85,12 +97,20 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(1)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     elif return_str=="사물인터넷":
         return JsonResponse({
             "message": {
                 "text": all_track(2)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -98,6 +118,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(3)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
 
@@ -105,12 +129,20 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(4)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     elif return_str=="가상현실":
         return JsonResponse({
             "message": {
                 "text": all_track(5)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -118,6 +150,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(6)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -125,6 +161,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(7)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -132,6 +172,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(8)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -139,6 +183,10 @@ def message(request):
         return JsonResponse({
             "message": {
                 "text": all_track(9)
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["HCI & 비쥬얼컴퓨팅","멀티미디어","사물인터넷","시스템응용","인공지능","가상현실","정보보호","데이터사이언스","SW교육","사이버국방","처음으로"]
             }
         })
     
@@ -146,6 +194,17 @@ def message(request):
         return JsonResponse({
             "message":{
                 "text":"버튼을 선택하세요."
+            },
+            "keyboard":{
+                "type":"buttons",
+                "buttons" : ["트랙 조회","전체 트랙 보기"]
+            }
+        })
+
+    else:
+        return JsonResponse({
+            "message":{
+                "text":"다시 시도하세요."
             },
             "keyboard":{
                 "type":"buttons",
@@ -194,7 +253,7 @@ def all_track(track):
     return abc
 
 
-def id(usernumber):
+def id(usernumber,num):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
@@ -203,6 +262,8 @@ def id(usernumber):
     sjnumber=soup.find_all("td",{'class',"number"})
     sjname=soup.find_all("td",{'class',"name"})
     sjtrack=soup.find_all("td",{'class',"track"})
+    sjtrackbase=soup.find_all("td",{'class',"trackbase"})
+    sjtrackuse=soup.find_all("td",{'class',"trackuse"})
     
     for n in sjname:
         i = sjname.index(n)
@@ -217,6 +278,14 @@ def id(usernumber):
         i = sjtrack.index(n)
         sjtrack[i]= n.get_text()
 
+    for n in sjtrackbase:
+        i = sjtrackbase.index(n)
+        sjtrackbase[i]= n.get_text()
+
+    for n in sjtrackuse:
+        i = sjtrackuse.index(n)
+        sjtrackuse[i]= n.get_text()
+
     for i in range(0,len(sjnumber)):
         if sjnumber[i]==usernumber: #입력한 학번에 대한 정보를 알기 위해
             index1=i
@@ -225,5 +294,14 @@ def id(usernumber):
     username=sjname[index1]
     usertrack=sjtrack[index1]
 
-    printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
-    return printstr
+    if num==1:
+        printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
+        return printstr
+
+    elif num==2:
+        printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*"
+        list=sjtrackbase[index].split(",")
+        for i in range(0,len(list)):
+            printstr=printstr+list[i]
+
+        return printstr
