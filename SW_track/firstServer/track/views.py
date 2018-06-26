@@ -334,7 +334,7 @@ def id(usernumber,num):
         i = sjtrackuse.index(n)
         sjtrackuse[i]= n.get_text()
 
-    all_track(): #총 트랙 정리
+    all_track() #총 트랙 정리
 
     #입력한 학번에 대한 정보를 알기 위해 인덱스 추출
     for i in range(0,len(sjnumber)):
@@ -344,8 +344,10 @@ def id(usernumber,num):
 
     username=sjname[index1] #이름
     usertrack=[] #트랙이 2개 이상일수도 있으니 목록으로
+
     if sjtrack[index1].find(",")!=-1: #트랙이 2개 이상이면
         usertrack=sjtrack[index1].split(",")
+        
     else: #트랙이 1개면
         usertrack.append(sjtrack[index1])
 
@@ -356,39 +358,37 @@ def id(usernumber,num):
         printstr+="트랙 과정 중입니다.\n"
         return printstr
 
+    
     elif num==2:
+        printstr=""
         for j in range(0,len(usertrack)):
-            printstr=username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
+            printstr=printstr+username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
 
             for i in range(0,len(tname)):
                 if tname[i]==usertrack[j]:
                     trackbase=tbase[i].split(",")
-                    userbase=sjtrackbase[i].split(",")
+                    userbase=sjtrackbase[index1].split(",")
 
                     for k in range(0,len(userbase)):
                         for l in range(0,len(trackbase)):
                             if userbase[k]==trackbase[l]:
                                 printstr=printstr+userbase[k]+"\n"
+                                
+            printstr=printstr+"\n*수강해야하는 교과목*\n"
+
+            for i in range(0,len(tname)):
+                if tname[i]==usertrack[j]:
+                    trackbase=tbase[i].split(",")
+                    userbase=sjtrackbase[index1].split(",")
+
+                    for k in range(0,len(trackbase)):
+                        cnt=0
+                        for l in range(0,len(userbase)):
+                            if userbase[l]==trackbase[k]:
+                                cnt+=1
+                        if cnt==0:
+                            printstr=printstr+trackbase[k]+"\n"
+
+            printstr+="\n===============\n"
 
         return printstr
-
-            
-            
-
-    #############################################################################################
-
-        if menu==1:
-            for n in len(0,tname):
-                if tname[n]==usertrack[j]:
-                    index2=n
-                    break
-
-            baselist=tbase[index2].split(",")
-            usertrackbase=sjtrackbase[index1].split(",")
-
-            liststr=""
-            for n in range(0,len(baselist)):
-                for m in range(0,len(usertrackbase)):
-                    if baselist[n]==usertrackbase[m]:
-                        liststr=liststr+baselist[n]+"\n"
-            return liststr
