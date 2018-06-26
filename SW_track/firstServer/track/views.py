@@ -34,11 +34,11 @@ def message(request):
         })
 
     elif return_str=="전체 트랙 보기":
-            return JsonResponse({
-                "message":{
-                    "text": track_all(4)
-                }
-            }}
+        return JsonResponse({
+            "message":{
+                "text": track_all(4)
+            }
+        })
 
 
 def track_all(track):
