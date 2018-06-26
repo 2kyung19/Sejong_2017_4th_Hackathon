@@ -299,6 +299,7 @@ def all_track(track):
 
     all = [0,0,0,0,0,0,0,0,0,0]
 
+    #all에다가 문자열을 추가
     for i in range(0,len(tname)):
         all[i] = str(i+1)+ '.' + str(tname[i]) + '\n\n*기초교과*\n' + str(tbase[i]) + '\n\n*응용교과*\n' + str(tuse[i])
         
@@ -308,7 +309,7 @@ def all_track(track):
     for i in range(0,len(list)):
         abc=abc+list[i]+"\n"
 
-    return abc
+    return abc #해당 인덱스의 트랙 반환
 
 #해당 id가 데이터에 있느냐 없느냐 검사 함수
 def idCheck(usernumber):
@@ -330,6 +331,7 @@ def idCheck(usernumber):
             break
     return cnt
 
+#사용자 정보를 긁어와서 정보제공하는
 def id(usernumber,num):
     global tuse
     global tbase
@@ -386,31 +388,34 @@ def id(usernumber,num):
     else: #트랙이 1개면
         usertrack.append(sjtrack[index1])
 
+    #num1 => 트랙 과정
     if num==1:
         printstr=username+" 님은 "
         for i in range(0,len(usertrack)):
-            printstr=printstr+usertrack[i]+' '
+            printstr=printstr+","+usertrack[i]+' '
         printstr+="트랙 과정 중입니다.\n"
         return printstr
 
-    
+    #num2 => 기초 교과 수강한것과 수강하지않은 것 나눠서 
     elif num==2:
         printstr=""
-        for j in range(0,len(usertrack)):
+        for j in range(0,len(usertrack)): #수강하고있는 트랙들
             printstr=printstr+username+" 님의 "+usertrack[j]+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
 
-            for i in range(0,len(tname)):
-                if tname[i]==usertrack[j]:
-                    trackbase=tbase[i].split(",")
-                    userbase=sjtrackbase[index1].split(",")
+            #해당 트랙 안에서 여태까지 수강한 기초교과목을 알려줌
+            for i in range(0,len(tname)): #해당 트랙의 전체 교과과정을 알기 위한 전체 반복문
+                if tname[i]==usertrack[j]: #해당 트랙의 인덱스를 찾음 => i
+                    trackbase=tbase[i].split(",") #해당 트랙의 기초교과부분의 정보를 빼온 뒤 목록 생성
+                    userbase=sjtrackbase[index1].split(",") #사용자가 현재 수강한 기초교과 목록 생성
 
-                    for k in range(0,len(userbase)):
+                    for k in range(0,len(userbase)): #사용자가 수강한 기초교과가 해당 트랙의 기초교과 과목인지 확인하여
                         for l in range(0,len(trackbase)):
-                            if userbase[k]==trackbase[l]:
-                                printstr=printstr+userbase[k]+"\n"
+                            if userbase[k]==trackbase[l]: #맞다면
+                                printstr=printstr+userbase[k]+"\n" #스트링에 추가함
                                 
             printstr=printstr+"\n*수강해야하는 교과목*\n"
 
+            #해당 트랙 안에서 여태까지 수강하지 않은 기초교과목을 알려줌
             for i in range(0,len(tname)):
                 if tname[i]==usertrack[j]:
                     trackbase=tbase[i].split(",")
@@ -428,6 +433,7 @@ def id(usernumber,num):
 
         return printstr
 
+    #num3=> 응용 교과 수강한 것과 수강하지 않은 것 나눠서
     elif num==3:
         printstr=""
         for j in range(0,len(usertrack)):
