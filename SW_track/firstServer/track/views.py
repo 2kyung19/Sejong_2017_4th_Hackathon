@@ -38,14 +38,27 @@ def message(request):
     elif return_str.find("1")!=-1:
         global userid
         userid=int(return_str)
-        return JsonResponse({
-            "message":{
-                "text":id(int(return_str),1)+"\n조회 하실 교과목을 선택하세요."
-            },
-            "keyboard":{
-                "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
-            }
+        
+        if id(userid,0)==1:
+            return JsonResponse({
+                "message":{
+                    "text":id(userid,1)+"\n조회 하실 교과목을 선택하세요."
+                },
+                "keyboard":{
+                    "type":"buttons",
+                    "buttons":["트랙 기초교과","트랙 응용교과","처음으로"]
+                }
+            })
+
+        elif id(userid,0)==0:
+            return JsonResponse({
+                "message":{
+                    "text":"다시 시도하세요."
+                },
+                "keyboard":{
+                    "type":"buttons",
+                    "buttons" : ["자신의 트랙 조회","전체 트랙 보기","소프트웨어융합대학 사이트"]
+                }
         })             
 
     elif return_str=="트랙 기초교과":
@@ -191,6 +204,7 @@ def message(request):
             }
         })
     
+
     elif return_str=="처음으로":
         return JsonResponse({
             "message":{
@@ -270,11 +284,12 @@ def all_track(track):
 
 
 def id(usernumber,num):
-    req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+    req = urllib.request.Request("http://interface518.dothome.co.kr/data.html", headers={'User-Agent': 'Mozilla/5.0'})
     con = urllib.request.urlopen(req)
     text = con.read().decode("utf8")
     soup = BeautifulSoup(text, 'html.parser')
 
+    ##문자 파싱 >>목록 추가
     sjnumber=soup.find_all("td",{'class',"number"})
     sjname=soup.find_all("td",{'class',"name"})
     sjtrack=soup.find_all("td",{'class',"track"})
@@ -285,6 +300,7 @@ def id(usernumber,num):
     tbase = soup.find_all('td',{'class':'tbase'})
     tuse = soup.find_all('td',{'class':'tuse'})
 
+    ##쓰레기값 제거
     for n in tname:
         i = tname.index(n)
         tname[i]= n.get_text()
@@ -318,17 +334,19 @@ def id(usernumber,num):
         i = sjtrackuse.index(n)
         sjtrackuse[i]= n.get_text()
 
+    #입력한 학번에 대한 정보를 알기 위해
     for i in range(0,len(sjnumber)):
-        if sjnumber[i]==usernumber: #입력한 학번에 대한 정보를 알기 위해
-            index1=i
+        if sjnumber[i]==usernumber:
+            index1=i #index1=> 이름/학번/선택한 트랙
             break
 
     username=sjname[index1]
     usertrack=sjtrack[index1]
 
+    #현재 수강한 교과목 비교
     for i in range(0,len(tname)):
         if str(usertrack)==str(tname[i]):
-            index2=i
+            index2=i #index2=> 전체 트랙 번호와 동일
 
     if num==1:
         printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
