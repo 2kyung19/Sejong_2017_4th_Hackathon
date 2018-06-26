@@ -36,10 +36,10 @@ def message(request):
         })
 
     elif return_str.find("1")!=-1:
-        global userid
-        userid=int(return_str)
         
-        if idCheck(userid)==True:
+        if idCheck(int(return_str))==True:
+            global userid
+            userid=int(return_str)
             return JsonResponse({
                 "message":{
                     "text":id(userid,1)+"\n조회 하실 교과목을 선택하세요."
@@ -50,7 +50,7 @@ def message(request):
                 }
             })
 
-        elif idCheck(userid)==False:
+        elif idCheck(int(return_str))==False:
             return JsonResponse({
                 "message":{
                     "text":"다시 시도하세요."
@@ -320,7 +320,7 @@ def id(usernumber,num):
     for n in sjname:
         i = sjname.index(n)
         sjname[i]= n.get_text()
-        
+
     for n in sjnumber:
         i = sjnumber.index(n)
         sjnumber[i]= n.get_text()
