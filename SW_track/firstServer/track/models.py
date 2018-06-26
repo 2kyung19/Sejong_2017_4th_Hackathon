@@ -1,3 +1,7 @@
 from django.db import models
 
-# Create your models here.
+class Candidate(models.Model):
+    student_id = models.IntegerField(default=1)
+    name = models.TextField(max_length=30)
+    base = models.TextField(max_length=30)
+    use = models.TextField(max_length=30)

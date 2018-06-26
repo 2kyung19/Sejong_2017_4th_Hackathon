@@ -6,12 +6,18 @@ from bs4 import BeautifulSoup
 import urllib.request
 import json
 import datetime
+from .models import Candidate
 import requests
 
 userid=0
 tuse=[]
 tbase=[]
 tname=[]
+
+def index(request):
+    candidates = Candidate.objects.all()
+    context = {'candidates' : candidates} #context에 모든 후보에 대한 정보를 저장
+    return render(request, 'track/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
 
 def keyboard(request):
     return JsonResponse(

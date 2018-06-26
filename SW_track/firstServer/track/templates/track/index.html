@@ -1,0 +1,36 @@
+<!-- C\Code\mysite\elections\template\elections\index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>트랙 정보</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <td class="tid"><B>ID</B></td>
+            <td class="tname"><B>트랙명</B></td>
+            <td class="tbase"><B>기초교과</B></td>
+            <td class="tuse"><B>응용교과</B></td>
+        </tr>
+        </thead>
+        <!-- 이 부분이 바뀌었습니다 -->
+        <tbody>
+        {% for candidate in candidates %}
+        <tr>
+            <td class="tid"> {{ candidate.student_id }} </td>
+            <td class="tname"> {{ candidate.name }} </td>
+            <td class="tbase"> {{ candidate.base }} </td>
+            <td class="tuse"> {{ candidate.use }} </td>
+        </tr>
+        {% endfor %}
+        <!-- 여기까지 -->
+        <tbody>
+    </table>
+</body>
