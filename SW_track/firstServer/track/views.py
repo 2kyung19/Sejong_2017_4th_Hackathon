@@ -63,7 +63,7 @@ def message(request):
                 },
                 "keyboard":{
                     "type":"buttons",
-                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","처음으로"]
                 }
             })
 
@@ -86,7 +86,7 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","처음으로"]
             }
         })
 
@@ -97,20 +97,9 @@ def message(request):
             },
             "keyboard":{
                 "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","처음으로"]
             }
     })
-
-    elif return_str=="다른 트랙과 비교":
-        return JsonResponse({
-            "message":{
-                "text":id(userid,4)
-            },
-            "keyboard":{
-                "type":"buttons",
-                "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
-            }
-        })
 
     elif return_str=="자세히보기":
         return JsonResponse({
@@ -123,7 +112,7 @@ def message(request):
                 },
                 "keyboard":{
                     "type":"buttons",
-                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","다른 트랙과 비교","처음으로"]
+                    "buttons":["트랙 기초교과","트랙 응용교과","자세히보기","처음으로"]
                 }
 
         })
