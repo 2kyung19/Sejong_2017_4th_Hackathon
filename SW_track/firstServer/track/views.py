@@ -32,12 +32,54 @@ def message(request):
                 "type":"text"
             }
         })
+
     elif return_str=="전체 트랙 보기":
-            track_all()
+            return JsonResponse({
+                "message":{
+                    "text": track_all(4)
+                }
+            }}
 
 
-def track_all():
-    return 0
+def track_all(track):
+    req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
+    response = urllib.request.urlopen(req)
+    text = response.read().decode("utf8")
+
+    soup = BeautifulSoup(text, 'html.parser')
+
+    tname = soup.find_all('td',{'class':'tname'})
+    tbase = soup.find_all('td',{'class':'tbase'})
+    tuse = soup.find_all('td',{'class':'tuse'})
+
+    all = [0,0,0,0,0,0,0,0,0,0]
+
+    for n in tname:
+        i = tname.index(n)
+        tname[i]= n.get_text()
+        
+    for n in tbase:
+        i = tbase.index(n)
+        tbase[i]= n.get_text()
+
+    for n in tuse:
+        i = tuse.index(n)
+        tuse[i]= n.get_text()
+
+
+    for i in range(0,len(tname)):
+        all[i] = str(i+1)+ '.' + str(tname[i]) + '\n\n*기초교과*\n' + str(tbase[i]) + '\n\n*응용교과*\n' + str(tuse[i])
+
+        
+    list=all[track].split(",")
+
+    abc=""
+    for i in range(0,len(list)):
+        abc=abc+list[i]+"\n"
+
+    return abc
+
+    
 
 def id(usernumber):
     req = urllib.request.Request("http://interface518.dothome.co.kr/track.html", headers={'User-Agent': 'Mozilla/5.0'})
@@ -70,5 +112,5 @@ def id(usernumber):
     username=sjname[index1]
     usertrack=sjtrack[index1]
 
-    printstr=username+"님은"+usertrack+"트랙 과정 중입니다."
+    printstr=username+" 님은 "+usertrack+"트랙 과정 중입니다."
     return printstr
