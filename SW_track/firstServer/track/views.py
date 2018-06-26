@@ -23,7 +23,7 @@ def index(request):
 def index1(request):
     candidates = Student.objects.all()
     context = {'candidates' : candidates} #context에 모든 후보에 대한 정보를 저장
-    return render(request, 'track/templates/student/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
+    return render(request, 'student/index.html', context) # context로 html에 모든 후보에 대한 정보를 전달
 
 def keyboard(request):
     return JsonResponse(
