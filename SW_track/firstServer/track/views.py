@@ -44,13 +44,6 @@ def message(request):
             }
         })
 
-    elif return_str=="HCI & 비쥬얼컴퓨팅":
-        return JsonResponse({
-            "message": {
-                "text": all_track(0)
-            }
-        })
-
     elif return_str=="멀티미디어":
         return JsonResponse({
             "message": {
