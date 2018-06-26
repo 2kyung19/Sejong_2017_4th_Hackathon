@@ -35,15 +35,6 @@ def message(request):
     elif return_str=="전체 트랙 보기":
             track_all()
 
-    if return_str.find('1')!=-1:
-        usernumber=return_str
-        return JsonResponse({
-            "message":{
-                "text":id(usernumber)
-            }
-        })
-
-
 
 def track_all():
     return 0
