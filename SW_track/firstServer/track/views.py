@@ -35,8 +35,13 @@ def message(request):
 
     elif return_str=="전체 트랙 보기":
         return JsonResponse({
-            "type" : "buttons",
-            "buttons" : ["멀티미디어","사물인터넷","시스템 응용"]
+            "message": {
+                "text": '학번을 입력해주세요.\nex)17010491'
+            },
+            "keyboard":{
+                "type" : "buttons",
+                "buttons" : ["트랙 조회","전체"]
+            }
         })
 
 
