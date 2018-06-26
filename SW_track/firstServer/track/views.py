@@ -22,4 +22,4 @@ def message(request):
     return_json_str = json.loads(message)
     return_str = return_json_str['content'] #버튼 항목중 무엇을 눌렀는가
 
-    return return_str
+    return JsonResponse(return_str)
