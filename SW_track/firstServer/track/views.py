@@ -300,7 +300,7 @@ def id(usernumber,num):
         return printstr
 
     elif num==2:
-        printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*"
+        printstr=username+" 님의 "+usertrack+" 트랙 기초과정 현황입니다.\n\n"+"*수강한 교과목*\n"
         list=sjtrackbase[index1].split(",")
         for i in range(0,len(list)):
             printstr=printstr+list[i]
