@@ -142,7 +142,7 @@ def message(request):
             }
         })
     
-    else: #처음으로
+    elif return_str=="처음으로":
         return JsonResponse({
             "keyboard":{
                 "type":"buttons",
