@@ -298,7 +298,7 @@ def idCheck(usernumber):
     cnt=False
     #입력한 학번에 대한 정보를 알기 위해
     for i in range(0,len(sjnumber)):
-        if sjnumber[i]==id:
+        if sjnumber[i]==usernumber:
             cnt=True
             break
     return cnt
