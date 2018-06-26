@@ -23,4 +23,5 @@ urlpatterns = [
     url(r'^message', views.message),
     url(r'^track', views.index),
     url(r'^student', views.index1),
+    url(r'^home', views.index),
 ]
