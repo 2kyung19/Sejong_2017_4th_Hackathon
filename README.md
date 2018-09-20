@@ -1,1 +1,8 @@
-# Sejong_Hackathon
+# Sejong SW Track
+
+## **8팀**
+***
+    17010865 강동민 (riyenas0925)
+    17010491 이경은 (2kyung19)
+    17011823 황동윤 (karajan1962)
+    17011500 이동엽 (---)
