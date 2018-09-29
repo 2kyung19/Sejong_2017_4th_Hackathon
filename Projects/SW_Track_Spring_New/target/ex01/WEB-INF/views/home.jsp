@@ -7,7 +7,7 @@
 <%--head.jsp--%>
 <%@ include file="include/head.jsp" %>
 
-<body class="hold-transition skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
 <div class="wrapper">
 
     <%--main_header.jsp--%>
