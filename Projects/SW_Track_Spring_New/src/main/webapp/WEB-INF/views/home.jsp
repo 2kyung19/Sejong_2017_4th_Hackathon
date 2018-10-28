@@ -1,57 +1,49 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
-<!DOCTYPE html>
-
 <html>
 
-<%--head.jsp--%>
-<%@ include file="include/head.jsp" %>
+<%@ include file="include/head.jsp"%>
 
 <body class="hold-transition skin-red sidebar-mini">
+
 <div class="wrapper">
 
-    <%--main_header.jsp--%>
-    <%-- Main Header --%>
-    <%@ include file="include/main_header.jsp" %>
+    <!-- Main Header -->
+    <%@ include file="include/main_header.jsp"%>
 
-    <%--left_column.jsp--%>
-    <%-- Left side column. contains the logo and sidebar --%>
-    <%@ include file="include/left_column.jsp" %>
-    
-    <%-- Content Wrapper. Contains page content --%>
+    <!-- Left side column. contains the logo and sidebar -->
+    <%@ include file="include/left_column.jsp"%>
+
+    <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
-        <%-- Content Header (Page header) --%>
+        <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                메인페이지
-                <small>스프링연습예제</small>
+                세종대학교 트랙관리프로그램
+                <small>Sejong University Track Management System</small>
             </h1>
             <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Main</a></li>
-                <li class="active">Home</li>
+                <li><a href="${path}/"><i class="fa fa-dashboard"></i> home</a></li>
             </ol>
         </section>
 
-        <%-- Main content --%>
+        <!-- Main content -->
         <section class="content container-fluid">
-            <p>메인 페이지입니다.</p>
-            <%--------------------------
-              | Your Page Content Here |
-              --------------------------%>
-        </section>
-        <%-- /.content --%>
-    </div>
-    <%-- /.content-wrapper --%>
 
-    <%--main_footer.jsp--%>
-    <%-- Main Footer --%>
-    <%@ include file="include/main_footer.jsp" %>
+            <p>메이페이지입니다....</p>
+
+        </section>
+        <!-- /.content -->
+    </div>
+    <!-- /.content-wrapper -->
+
+    <!-- Main Footer -->
+    <%@ include file="include/main_footer.jsp"%>
 
 </div>
-<%-- ./wrapper --%>
+<!-- ./wrapper -->
 
-<%--plugin_js.jsp--%>
-<%@ include file="include/plugin_js.jsp" %>
+<%@ include file="include/plugin_js.jsp"%>
 
 </body>
+
 </html>

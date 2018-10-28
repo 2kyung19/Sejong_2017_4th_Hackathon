@@ -11,7 +11,7 @@
     </appender>
 
     <!-- Application Loggers -->
-    <logger name="com.doubles.ex00">
+    <logger name="com.riyenas0925.mvcboard">
         <level value="info"/>
     </logger>
 
@@ -34,7 +34,7 @@
 
     <!-- Root Logger -->
     <root>
-        <priority value="info"/>
+        <priority value="warn"/>
         <appender-ref ref="console"/>
     </root>
 
