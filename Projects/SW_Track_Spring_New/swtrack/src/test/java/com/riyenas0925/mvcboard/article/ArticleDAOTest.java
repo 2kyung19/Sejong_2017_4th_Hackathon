@@ -32,7 +32,7 @@ public class ArticleDAOTest {
 
     @Test
     public void testRead() throws Exception {
-        logger.info(articleDAO.read(2).toString());
+        logger.info(articleDAO.read(25).toString());
     }
 
     @Test
