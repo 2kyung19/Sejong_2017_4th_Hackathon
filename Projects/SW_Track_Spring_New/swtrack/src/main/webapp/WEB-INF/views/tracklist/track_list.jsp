@@ -19,19 +19,18 @@
         <section class="content-header">
             <h1>
                 게시판
-                <small>조회페이지</small>
+                <small>입력페이지</small>
             </h1>
             <ol class="breadcrumb">
                 <li><i class="fa fa-edit"></i> article</li>
-                <li class="active"><a href="${path}/article/write"> read</a></li>
+                <li class="active"><a href="${path}/article/list"> list</a></li>
             </ol>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <!-- Info boxes -->
             <div class="row">
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-aqua"><i class="ion ion-ios-gear-outline"></i></span>
 
@@ -44,7 +43,7 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-red"><i class="fa fa-google-plus"></i></span>
 
@@ -61,7 +60,7 @@
                 <!-- fix for small devices only -->
                 <div class="clearfix visible-sm-block"></div>
 
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-green"><i class="ion ion-ios-cart-outline"></i></span>
 
@@ -74,7 +73,7 @@
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
-                <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="col-md-3 col-sm-6">
                     <div class="info-box">
                         <span class="info-box-icon bg-yellow"><i class="ion ion-ios-people-outline"></i></span>
 
@@ -91,16 +90,21 @@
             <!-- /.row -->
         </section>
     </div>
-
     <!-- Main Footer -->
     <%@ include file="../include/main_footer.jsp"%>
 
 </div>
 <!-- ./wrapper -->
 <%@ include file="../include/plugin_js.jsp"%>
-
 <script>
+    var result = "${msg}";
+    if (result == "regSuccess") {
+        alert("게시글 등록이 완료되었습니다.");
+    } else if (result == "modSuccess") {
+        alert("게시글 수정이 완료되었습니다.");
+    } else if (result == "delSuccess") {
+        alert("게시글 삭제가 완료되었습니다.");
+    }
 </script>
-
 </body>
 </html>
