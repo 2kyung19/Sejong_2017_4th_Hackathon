@@ -13,6 +13,14 @@
 <!-- AdminLTE for demo purposes -->
 <script src="../dist/js/demo.js"></script>
 
+<script src="/bower_components/Flot/jquery.flot.js"></script>
+<!-- FLOT RESIZE PLUGIN - allows the chart to redraw when the window is resized -->
+<script src="/bower_components/Flot/jquery.flot.resize.js"></script>
+<!-- FLOT PIE PLUGIN - also used to draw donut charts -->
+<script src="/bower_components/Flot/jquery.flot.pie.js"></script>
+<!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
+<script src="/bower_components/Flot/jquery.flot.categories.js"></script>
+
 <!-- Optionally, you can add Slimscroll and FastClick plugins.
 Both of these plugins are recommended to enhance the
 user experience. -->

@@ -31,7 +31,7 @@ public class ArticleController {
 
         logger.info("write GET...");
 
-        return "/tracklist/track_list";
+        return "/notice/notice_read";
     }
 
     @RequestMapping(value = "/write", method = RequestMethod.POST)
